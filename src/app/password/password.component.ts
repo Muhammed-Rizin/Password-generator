@@ -22,6 +22,7 @@ export class PasswordComponent {
 
 
   generate(){
+    this.CharacterData = ""
     if(this.length <= 100 && this.length >= 8) {
       const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
       const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -34,10 +35,10 @@ export class PasswordComponent {
         !this.upperCase && !this.lowerCase && 
         !this.number  && !this.specialCharecter
       ){
-        password += this.addValue(password, uppercaseChars)
-        password += this.addValue(password, lowercaseChars)
-        password += this.addValue(password, numericChars)
-        password += this.addValue(password, specialChars)
+        password = this.addValue(password, uppercaseChars)
+        password = this.addValue(password, lowercaseChars)
+        password = this.addValue(password, numericChars)
+        password = this.addValue(password, specialChars)
 
         const remainingLength = this.length - password.length;
         for (let i = 0; i < remainingLength; i++) {
@@ -109,9 +110,6 @@ export class PasswordComponent {
 
   onCopy(){
     this.tooltipText = 'Copied'
-    setTimeout(() => {
-      this.closeText()
-    }, 200)
   }
   outFunc() {
     this.tooltipText = 'Copy to clipboard';
